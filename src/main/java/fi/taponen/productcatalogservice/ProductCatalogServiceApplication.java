@@ -11,14 +11,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient
 public class ProductCatalogServiceApplication {
 	
-	@Bean
-	@LoadBalanced
-	public RestTemplate getRestTemplate() {
-		return new RestTemplate();
-	}
-
 	public static void main(String[] args) {
 		SpringApplication.run(ProductCatalogServiceApplication.class, args);
 	}
 
+	@LoadBalanced
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 }

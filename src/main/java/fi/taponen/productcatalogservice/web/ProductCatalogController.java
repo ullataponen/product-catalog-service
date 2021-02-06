@@ -24,13 +24,16 @@ public class ProductCatalogController {
 	
 	@RequestMapping("/{userId}")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId) {
+		System.out.println("userid" + userId);
 		
-		UserRating ratings = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/" + userId, UserRating.class);
+		UserRating userRating = restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/" + userId, UserRating.class);
 
-		return ratings.getUserRating().stream().map(rating -> {
+		System.out.println("ratings" + userRating.getRatings());
+		
+		return userRating.getRatings().stream().map(rating -> {
 			Product product = restTemplate.getForObject("http://product-info-service/products/" + rating.getProductId(), Product.class);
 			
-			return new CatalogItem(product.getName(), "Bosch", "Gets the job done", rating.getRating());
+			return new CatalogItem(product.getName(), product.getManufacturer(), rating.getRating());
 		}).collect(Collectors.toList());
 }
 	
