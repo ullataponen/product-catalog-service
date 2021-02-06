@@ -2,23 +2,23 @@ package fi.taponen.productcatalogservice.domain;
 
 public class Rating {
 	
-	private String productId;
+	private long productId;
 	private int rating;
 	
 	public Rating() {
 	}
 
-	public Rating(String productId, int rating) {
+	public Rating(long productId, int rating) {
 		super();
 		this.productId = productId;
 		this.rating = rating;
 	}
 
-	public String getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
