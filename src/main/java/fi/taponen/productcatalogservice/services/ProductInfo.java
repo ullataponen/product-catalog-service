@@ -27,7 +27,7 @@ public class ProductInfo {
                     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000"),
             })
 	public CatalogItem getCatalogItem(Rating rating) {
-		Product product = restTemplate.getForObject("http://product-info-service/products/" + rating.getProductId(), Product.class);
+		Product product = restTemplate.getForObject("https://arcane-reef-64898.herokuapp.com/products/" + rating.getProductId(), Product.class);
 		return new CatalogItem(product.getProductId(), product.getName(), product.getManufacturer(), rating.getRating(), rating.getComment());
 	}
 

@@ -27,7 +27,7 @@ public class UserRatingInfo {
                     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000"),
             })
 	public UserRating getUserRating(@PathVariable("userId") String userId) {
-		 return restTemplate.getForObject("http://ratings-data-service/ratingsdata/users/" + userId, UserRating.class);
+		 return restTemplate.getForObject("https://frozen-reaches-84239.herokuapp.com/ratingsdata/users/" + userId, UserRating.class);
 	}
 	
 	public UserRating getFallbackUserRating(@PathVariable("userId") String userId) {
