@@ -28,7 +28,7 @@ public class ProductInfo {
             })
 	public CatalogItem getCatalogItem(Rating rating) {
 		Product product = restTemplate.getForObject("http://product-info-service/products/" + rating.getProductId(), Product.class);
-		return new CatalogItem(product.getName(), product.getManufacturer(), rating.getRating());
+		return new CatalogItem(product.getProductId(), product.getName(), product.getManufacturer(), rating.getRating(), rating.getComment());
 	}
 
 	public CatalogItem getFallbackCatalogItem(Rating rating) {
