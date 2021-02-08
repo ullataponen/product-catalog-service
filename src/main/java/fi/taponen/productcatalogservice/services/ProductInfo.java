@@ -19,13 +19,14 @@ public class ProductInfo {
 	@Autowired
 	private  RestTemplate restTemplate;
 	
-	@HystrixCommand(fallbackMethod = "getFallbackCatalogItem",
-            commandProperties = {
+	@HystrixCommand(fallbackMethod = "getFallbackCatalogItem"
+           /* commandProperties = {
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
                     @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
                     @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"),
                     @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000"),
-            })
+            }*/
+            )
 	public CatalogItem getCatalogItem(Rating rating) {
 		Product product = restTemplate.getForObject("https://product-info-service/products/" + rating.getProductId(), Product.class);
 		return new CatalogItem(product.getProductId(), product.getName(), product.getManufacturer(), rating.getRating(), rating.getComment());
